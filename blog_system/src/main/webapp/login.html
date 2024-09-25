@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+
+    <!-- 一定要进行CSS的引入 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+     <!-- 导航栏:注意登录页面没有注销 -->
+     <div class="nav">
+        <img src="img/icon.png" alt="">
+        <span class="title">HinsBlog</span>
+        <!-- 加上一片空白区域，不显示任何内容，只是占位，将标签撑到右边！ -->
+        <div class="spacer"></div>
+        <a href="blog_list.html">主页</a>
+        <a href="blog_edit.html">写博客</a>
+    </div>
+
+    <!-- 用这个元素作为页面的版心 ,把对话框放到该元素中，并且可以水平垂直居中-->
+    <div class="login-container">
+        <!-- 添加form表单 -->
+        <form action="login" method="post">
+             <!-- 登录对话框 -->
+            <div class="dialog">
+                <h3>登录</h3>
+                <div class="row">
+                    <span>用户名</span>
+                    <!-- 用户名框和密码框很关键，后面还会使用，所以使用id进行标识 -->
+                    <input type="text" id="username" name="userName">
+                </div>
+                <div class="row">
+                    <span>密码</span>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="row">
+
+                    <!-- 修改登录按钮 -->
+                    <input type="submit" value="登录" id="login-button">
+                </div>
+            </div>
+        </form>
+       
+    </div>
+</body>
+</html>

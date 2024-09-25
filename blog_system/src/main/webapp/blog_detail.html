@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客详情页</title>
+
+    <!-- 引入CSS样式 -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/blog_detail.css">
+
+    <!-- 引入editor.md的依赖 -->
+    <link rel="stylesheet" href="editor.md/css/editormd.min.css">
+
+    <!-- jquery在editor.md文档中找不到，其实是一个另外的第三方库，不是editor.md自带的！
+    缺少就无法实现Markdown编辑器，所以要手动引入jquery -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="editor.md/lib/marked.min.js"></script>
+    <script src="editor.md/lib/prettify.min.js"></script>
+    <script src="editor.md/editormd.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <img src="img/icon.png" alt="">
+        <span class="title">HinsBlog</span>
+        <!-- 加上一片空白区域，不显示任何内容，只是占位，将标签撑到右边！ -->
+        <div class="spacer"></div>
+        <a href="blog_list.html">主页</a>
+        <a href="blog_edit.html">写博客</a>
+        <a href="logout">注销</a>
+        <a href="#" id="delete_button">删除</a>
+    </div>
+
+     <!-- 页面的主区/版心 -->
+     <div class="container">
+        <!-- 左侧用户信息 -->
+        <div class="container-left">
+            <!-- 用该元素表示个人信息 -->
+            <div class="card">
+                <!-- 用户头像 -->
+                <img src="img/avatar.jpg" alt="">
+                <!-- 用户名 -->
+                <h3>HinsCoder</h3>
+                <a href="https://github.com/HinsCoder">GitHub地址</a>
+                <div class="counter">
+                    <!-- span默认是行内元素（可以改） -->
+                    <span>文章</span>
+                    <span>分类</span>
+                </div>
+                <div class="counter">
+                    <span>3</span>
+                    <span>1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧内容区 -->
+        <div class="container-right">
+            <div class="blog_detail">
+                <!-- 以下内容是进行前后端交互的改写代码 -->
+                <h3></h3>
+                <div class="date"></div>
+                <!-- #content 这个div表示用来存储博客的正文部分 -->
+                <div id="content" style="background-color: transparent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通过ajax来获取到博客详情页面 -->
+    <!-- <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    <!-- jquery在editor引入时已经引用过了 -->
+
+    <script src="js/app.js"></script>
+
+    <script>
+        function getBlog() {
+            $.ajax({
+                type: 'get',
+                url: 'blog' + location.search,
+                success: function (body) {
+                    let h3 = document.querySelector('.blog_detail>h3');
+                    h3.innerHTML = body.title;
+                    let dateDiv = document.querySelector('.blog_detail>.date');
+                    dateDiv.innerHTML = body.postTime;
+
+                    // let contentDiv = document.querySelector('.blog_detail>#content');
+                    // contentDiv.innerHTML = body.content;
+
+                    // 此处使用editor.md来进行渲染
+                    editormd.markdownToHTML('content', { markdown: body.content });
+                }
+            });
+        }
+
+        getBlog();
+
+        getLoginStatus();
+
+        // 同样是获取用户信息
+        function getUserInfo() {
+            $.ajax({
+               type: 'get',
+                // 不要忘记带有query String
+               url: 'userInfo' + location.search,
+               success: function(body) {
+                    let h3 = document.querySelector(".container-left>.card>h3");
+                    h3.innerHTML = body.userName;
+               } 
+            });
+        }
+
+        getUserInfo();
+
+        // 更新删除的路径（加上blogId）
+        function updateDeleteURL() {
+            let deleteButton = document.querySelector("#delete_button");
+            deleteButton.href = "blog_delete" + location.search;
+        }
+
+        updateDeleteURL();
+
+    </script>
+</body>
+</html>

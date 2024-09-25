@@ -1,0 +1,20 @@
+/* 给博客详情页引入具体样式 */
+
+/* 修改标题文字样式 */
+.blog_detail h3 {
+    font-size: 20px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* 设置时间样式 */
+.blog_detail .date {
+    color: rgb(0,128,0);
+    padding: 5px 0 20px 0;  /* 内边距：上右下左（顺时针） */
+    text-align: center;     /* 文字居中 */
+}
+
+/* 正文内容设置 */
+.blog_detail p {
+    text-indent: 2em;   /* 首行缩进 */
+}

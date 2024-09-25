@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客编辑</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/blog_edit.css">
+
+    <!-- 引入editor.md的依赖 -->
+    <link rel="stylesheet" href="editor.md/css/editormd.min.css">
+
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <!-- jquery在editor.md文档中找不到，其实是一个另外的第三方库，不是editor.md自带的！
+    缺少就无法实现Markdown编辑器，所以要手动引入jquery -->
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="editor.md/lib/marked.min.js"></script>
+    <script src="editor.md/lib/prettify.min.js"></script>
+    <script src="editor.md/editormd.js"></script>
+
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <img src="img/icon.png" alt="">
+        <span class="title">HinsBlog</span>
+        <!-- 加上一片空白区域，不显示任何内容，只是占位，将标签撑到右边！ -->
+        <div class="spacer"></div>
+        <a href="blog_list.html">主页</a>
+        <a href="blog_edit.html">写博客</a>
+        <a href="logout">注销</a>
+    </div>
+
+    <!-- 整个编辑页的版心 -->
+    <div class="blog-edit-container">
+        <!-- 使用form表单 -->
+        <form action="blog" method="post" style="height: 100%">
+            <!-- 标题编辑区域 -->
+            <div class="title">
+                <!-- 输入的标题内容 -->
+                <!-- 在文章标题输入框中有提示信息：是input的一个特殊属性：placeholder：-->
+                <input type="text" id="blog-title" placeholder="在这里输入博客标题" name="title">
+                <!-- <button id="submit">发布文章</button> -->
+                <input id="submit" value="发布文章" type="submit">
+            </div>
+
+            <!-- 正文编辑区域 -->
+            <div id="editor">
+                <textarea name="content" style="display: none"></textarea>
+            </div>
+        </form>
+        
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // 初始化editor.md编辑器，也是截取自官方文档
+        // 第一个参数的id和div中id对应，决定把编辑器放在那个div中
+        var editor = editormd("editor", {
+            // 这里的尺寸必须在这里进行设置，设置CSS样式会被editormd 自动覆盖掉
+            width: "100%",
+            // 设定编辑器高度:父类高度（blog-edit-container高度其实是整个浏览器高度-导航栏）-标题
+            height: "calc(100% - 50px)",
+            // 编辑器中的初始内容
+            markdown: "# 在这里写下一篇博客",
+            // 指定editor.md 依赖的插件路径
+            path: "editor.md/lib/",
+            saveHTMLtoTextarea: true
+        });
+
+        getLoginStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* 该页面专门放 博客列表页 的专用样式 */
+/* 每篇博客的样式设计 */
+
+/* 针对博客的容器进行设置 */
+.blog {
+    
+}
+
+/* 博客标题设计 */
+/* 使用后代选择器/子选择器 */
+.blog .title {
+    /* 修改文字样式即位置 */
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0;    /* 上下有设置距离 */
+}
+
+.blog .date {
+    text-align: center;
+    color: rgb(0, 128, 0);
+    padding: 10px 0;
+}
+
+.blog .des {
+    text-indent: 2em;   /* 首行缩进 */
+}
+
+.blog a {
+    /* 首先转成块级元素，才好设置尺寸 */
+    display: block;
+    width: 120px;
+    height: 40px;
+    margin: 10px auto;  /* 注意水平居中写法 */
+    text-align: center; /* 文字水平居中 */
+    line-height: 40px;  /* 文字垂直居中 :行高和元素高度一样*/
+    color: black;
+    text-decoration: none;          /* 去掉下划线 */
+    border: 2px solid black;        /* 加上边框 */
+    transition: all 0.6s;      /* 加上背景渐变效果:过渡属性 */
+}
+
+/* 给 查看全文 一个鼠标放上去改变的效果 */
+/* 鼠标悬停的时候有个动态效果 */
+.blog a:hover {
+    background-color: black;
+    color: white;
+}

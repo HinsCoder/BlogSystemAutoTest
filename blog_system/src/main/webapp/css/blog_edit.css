@@ -1,0 +1,49 @@
+/* 该文件是针对博客编辑页写的样式 */
+
+/* 版心 */
+.blog-edit-container {
+    width: 1000px;
+    height: calc(100% - 50px);
+    margin: 0 auto;        /* 元素（标签）的水平居中 */
+}
+
+/* 设置标题编辑区的样式 */
+.blog-edit-container .title {
+    height: 50px;       /* 宽度和版心一样宽 */
+    display: flex;      /* 水平排列多个元素：弹性布局 */
+    justify-content: space-between;     /* 水平方向中间是有空隙的 */
+    align-items: center;
+}
+
+/* 针对标题输入框进行调整 */
+#blog-title {
+    height: 40px;
+    width: 897px;
+    font-size: 20px;
+    padding-left: 5px;
+    outline: none;  /* 去掉轮廓线，轮廓线就是选中输入框时周围的黑圈 */
+    border: none;   /* 去掉边框线 */
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.8);    /* 加上背景半透明效果 */
+}
+
+/* 提交按钮设置 */
+#submit {
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: orange;
+}
+
+/* 给按钮加上点击事件 */
+#submit:active {
+    background-color: grey;
+}
+
+/* 正文编辑区样式设置 */
+#editor {
+    border-radius: 10px;    /* 边框圆角 */
+    opacity: 80%;   /* 透明度 */
+}
